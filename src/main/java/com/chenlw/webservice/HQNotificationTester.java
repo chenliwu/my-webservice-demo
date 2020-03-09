@@ -1,10 +1,12 @@
 package com.chenlw.webservice;
 
 import com.alibaba.fastjson.JSONObject;
+import com.chenlw.webservice.utils.Base64;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.xml.ws.Endpoint;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author chenlw
@@ -53,12 +55,34 @@ public class HQNotificationTester {
         System.out.println("");
         System.out.println("returnLinkNotificationSuccessfulResult");
         System.out.println(requestData);
+
+        outputLinkNotification(requestData);
+
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("code", "S");
         jsonObject.put("msg", "ok");
         jsonObject.put("invaliduser", "");
         return jsonObject.toString();
     }
+
+
+    @WebMethod(exclude = true)
+    public void outputLinkNotification(String requestData) {
+        try {
+            JSONObject jsonObject = JSONObject.parseObject(requestData);
+            if (jsonObject.get("respUrl") != null) {
+                String respUrl = Base64.byteArrayToBase64(jsonObject.get("respUrl").toString().getBytes(StandardCharsets.UTF_8.displayName()));
+                System.out.println("业务详情跳转地址：" + respUrl);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("解析通知失败：" + e.getMessage());
+        }
+
+    }
+
+
 
 
     /**
