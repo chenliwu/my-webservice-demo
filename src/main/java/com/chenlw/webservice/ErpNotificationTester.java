@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.xml.ws.Endpoint;
+import java.util.Date;
 
 /**
  * @author chenlw
@@ -45,6 +46,8 @@ public class ErpNotificationTester {
     @WebMethod(exclude = true)
     public void outputNotification(String requestData) {
         try {
+            System.out.println();
+            System.out.println(new Date());
             JSONObject jsonObject = JSONObject.parseObject(requestData);
             if (jsonObject.get("userList") != null) {
                 System.out.println("userList:" + jsonObject.get("userList").toString());
@@ -56,6 +59,7 @@ public class ErpNotificationTester {
                 System.out.println("type:" + jsonObject.get("type").toString());
                 if ("1".equals(jsonObject.get("type"))) {
                     System.out.println("url：" + jsonObject.get("url"));
+                    System.out.println("url：" + jsonObject.get("url") + "&access_token=123&expires_in=123");
                 }
             }
 
