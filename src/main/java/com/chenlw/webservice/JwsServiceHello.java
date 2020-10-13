@@ -29,33 +29,36 @@ public class JwsServiceHello {
         //发布成功后 在浏览器输入 http://192.168.0.193:9090/Service/ServiceHello?wsdl
     }
 
-    /** 供客户端调用方法  该方法是非静态的，会被发布
-     * @param name  传入参数
+    /**
+     * 供客户端调用方法  该方法是非静态的，会被发布
+     *
+     * @param name 传入参数
      * @return String 返回结果
-     * */
-    public String getValue(String name){
-        return "欢迎你！ "+name;
+     */
+    public String getValue(String name) {
+        return "欢迎你！ " + name;
     }
 
     /**
      * 方法上加@WebMentod(exclude=true)后，此方法不被发布；
+     *
      * @param name
      * @return
      */
-    @WebMethod(exclude=true)
-    public String getHello(String name){
-        return "你好！ "+name;
+    @WebMethod(exclude = true)
+    public String getHello(String name) {
+        return "你好！ " + name;
     }
 
-    /** 静态方法不会被发布
+    /**
+     * 静态方法不会被发布
+     *
      * @param name
      * @return
      */
-    public static String getString(String name){
-        return "再见！"+name;
+    public static String getString(String name) {
+        return "再见！" + name;
     }
-
-
 
 
 }
