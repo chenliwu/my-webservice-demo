@@ -17,7 +17,6 @@ import java.security.cert.X509Certificate;
 public class MySign {
 
     public static void main(String[] args) throws Exception {
-
         MySign.setKeyStorePath("d://leslie.keystore");
         MySign.setPassword("123456");
         MySign.setAlias("everygold");
